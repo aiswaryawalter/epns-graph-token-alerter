@@ -7,7 +7,7 @@ export const subgraphID = "aiswaryawalter/push-token"
 
 export function handleTransfer(event: Transfer): void {
   let contract = PushToken.bind(event.address)
-  let decimals = BigInt.fromString(contract.decimals.toString())
+  let decimals = BigInt.fromString(contract.decimals().toString())
   let day = (event.block.timestamp.div(BigInt.fromI32(60 * 60 * 24)))
 
   let userFrom = User.load(event.params.from.toHex())
