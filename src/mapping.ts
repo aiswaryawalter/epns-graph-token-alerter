@@ -7,7 +7,7 @@ export const subgraphID = "aiswaryawalter/push-token"
 
 export function handleTransfer(event: Transfer): void {
   let contract = PushToken.bind(event.address)
-  // let decimals = BigInt.fromString(contract.decimals.toString())
+  let decimals = BigInt.fromString(contract.decimals.toString())
   let day = (event.block.timestamp.div(BigInt.fromI32(60 * 60 * 24)))
 
   let userFrom = User.load(event.params.from.toHex())
@@ -54,7 +54,7 @@ export function handleTransfer(event: Transfer): void {
   let recipient = event.params.to.toHexString(),
   type = "3",
   title = "PUSH Received",
-  body = `Received ${event.params.tokens} PUSH from ${event.params.from.toHexString()}`,
+  body = `Received ${event.params.tokens.div(decimals)} PUSH from ${event.params.from.toHexString()}`,
   subject = "PUSH Received",
   message = `Reeceived ${event.params.tokens} PUSH from ${event.params.from.toHexString()}`,
   image = "https://play-lh.googleusercontent.com/i911_wMmFilaAAOTLvlQJZMXoxBF34BMSzRmascHezvurtslYUgOHamxgEnMXTklsF-S",
