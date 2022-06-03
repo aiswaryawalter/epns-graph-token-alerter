@@ -63,8 +63,8 @@ contract PushToken is ERC20Interface, SafeMath {
         name = "Push Token";
         decimals = 2;
         _totalSupply = 100000;
-        balances[0x24a8E20a63DC3149BD7Ee136632161cDb8857522] = _totalSupply;
-        emit Transfer(address(0), 0x24a8E20a63DC3149BD7Ee136632161cDb8857522, _totalSupply);
+        balances[msg.sender] = _totalSupply;
+        emit Transfer(address(0), msg.sender, _totalSupply);
     }
  
     function totalSupply() public constant returns (uint) {
